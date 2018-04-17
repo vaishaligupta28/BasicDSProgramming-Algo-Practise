@@ -15,7 +15,7 @@ struct node* newNode(int data)
     newNode->right = NULL;
 }
 
-int height(struct node* root, int *ptrHeight)
+int height(struct node* root)
 {
     int l, r;
     if(!root)
@@ -25,17 +25,18 @@ int height(struct node* root, int *ptrHeight)
     else
     {
         if(root->left != NULL){
-            l = height(root->left, ptrHeight);
+            l = height(root->left);
             printf("At %d--:  %d\n",root->left->data, l);
         }
         if(root->right != NULL){
-            r = height(root->right, ptrHeight);
+            r = height(root->right);
             printf("At %d++:  %d\n",root->right->data, r);
         }
-        *ptrHeight = 1 + (l > r? l : r); /**here link could have been broken*/
-        return *ptrHeight;
+        return 1 + (l > r? l : r);
     }
 }
+
+
 void main()
 {
     struct node* root = newNode(1);
@@ -43,7 +44,5 @@ void main()
     root->right = newNode(3);
     root->left->left = newNode(4);
     root->left->right = newNode(5);
-    int h = 0;
-    height(root, &h);
-    printf("Height: %d", h);
+    printf("Height: %d", height(root));
 }
