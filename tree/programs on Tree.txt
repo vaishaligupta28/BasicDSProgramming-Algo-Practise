@@ -1,0 +1,13 @@
+Binary Tree
+1- Tree Traversals
+
+
+
+
+Binary Search Tree
+1-Operations on BST using structure
+2-Operations on BST using sorted arrays
+
+
+
+
