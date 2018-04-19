@@ -82,8 +82,7 @@ struct TreeNode* pop()
 void inorderTraversal_iteration_UsingStack(struct TreeNode* root)
 {
     struct TreeNode* current = root;
-    int done = 0;
-    while(done == 0)
+    while(1)
     {
         if(current != NULL)
         {
@@ -99,7 +98,7 @@ void inorderTraversal_iteration_UsingStack(struct TreeNode* root)
                 current = current->right;
             }
             else
-                done = 1;
+                return;
         }
     }
 }
