@@ -117,6 +117,9 @@ struct TreeNode* getKthSmallestElement_3(struct TreeNode* root, int k)
 }
 
 
+//Above three approaches are the same
+
+
 
 
 void main()
