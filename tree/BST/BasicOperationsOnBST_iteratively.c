@@ -3,7 +3,6 @@
 struct TreeNode
 {
     int data;
-    int leftChildCount;
     struct TreeNode* left;
     struct TreeNode* right;
 };
@@ -12,7 +11,6 @@ struct TreeNode* newTreeNode(int data)
 {
     struct TreeNode* newNode = (struct TreeNode* )malloc(sizeof(struct TreeNode));
     newNode->data = data;
-    newNode->leftChildCount = 0;
     newNode->left = NULL;
     newNode->right = NULL;
     return newNode;
@@ -76,6 +74,7 @@ struct TreeNode* deletion(struct TreeNode* root, int data)
 
         if(pTrav->left == NULL && pTrav->right == NULL)
         {
+            printf("....");
             temp = pTrav;
             if(pCurr->left->data == pTrav->data)
                 pCurr->left = NULL;
@@ -106,6 +105,7 @@ struct TreeNode* deletion(struct TreeNode* root, int data)
         }
         else
         {
+            pCurr = pTrav;
             temp = getAddressOfMinimumNode(pTrav->right);
             pTrav->data = temp->data;
             pTrav = pTrav->right;
@@ -127,18 +127,42 @@ void main()
 {
     int i;
     struct TreeNode* root = NULL;
-    int inputTree[] = {40,20,80,10,30,90,55,8,45,70,60,75,65};
+    //int inputTree[] = {40,20,80,10,30,90,55,8,45,70,60,75,65};
+    int inputTree[] = {40,20,30,90,55,8,45,70,60,75,65,15,10};
     int size = sizeof(inputTree)/sizeof(inputTree[0]);
     for(i=0;i<size;i++)
     {
         root = insertion(root, inputTree[i]);
     }
     inorder(root);
-    root = deletion(root, 10);
-    printf("\n\nAfter deletion %d\n", 10);
+//    root = deletion(root, 10);
+//    printf("\n\nAfter deletion %d\n", 10);
+//    inorder(root);
+//    root = deletion(root, 55);
+//    printf("\n\nAfter deletion %d\n", 55);
+//    inorder(root);
+//    root = deletion(root, 60);
+//    printf("\n\nAfter deletion %d\n", 60);
+//    inorder(root);
+//    root = deletion(root, 65);
+//    printf("\n\nAfter deletion %d\n", 65);
+//    inorder(root);
+//    root = deletion(root, 75);
+//    printf("\n\nAfter deletion %d\n", 75);
+//    inorder(root);
+
+//root = deletion(root, 65);
+    root = deletion(root, 90);
+    printf("\n");
+    inorder(root);
+    root = deletion(root, 8);
+    printf("\n");
     inorder(root);
     root = deletion(root, 55);
-    printf("\n\nAfter deletion %d\n", 55);
+    printf("\n");
+    inorder(root);
+    root = deletion(root, 20);
+    printf("\n");
     inorder(root);
 }
 
