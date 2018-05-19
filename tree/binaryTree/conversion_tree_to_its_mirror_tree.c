@@ -17,29 +17,31 @@ struct TreeNode* newTreeNode(int data)
     return newNode;
 }
 
-struct TreeNode* lca(struct TreeNode* root, int n1, int n2)
+
+struct TreeNode* do_mirror(struct TreeNode* root)
 {
     if(!root)
-        return NULL;
-    if(root->data == n1 || root->data == n2)
-        return root;
-    struct TreeNode* left = lca(root->left, n1, n2);
-    struct TreeNode* right = lca(root->right, n1, n2);
-    if(left != NULL && right != NULL)
-        return root;
-    else if(left == NULL && right == NULL)
-        return NULL;
+        return;
     else
-        return left!= NULL ? left: right;
+    {
+        struct TreeNode* temp;
+        do_mirror(root->left);
+        do_mirror(root->right);
+
+        temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+    }
 }
+
 
 void inorder(struct TreeNode* root)
 {
-    if(root->left != NULL)
-        inorder(root->left);
+    if(!root)
+        return;
+    inorder(root->left);
     printf("%d ", root->data);
-    if(root->right != NULL)
-        inorder(root->right);
+    inorder(root->right);
 }
 
 void main()
@@ -51,5 +53,7 @@ void main()
     root->left->right = newTreeNode(5);
     printf("INORDER TRAVERSAL: ");
     inorder(root);
-    printf("\nLowest Common Ancestor b/w %d and %d : %d", 4, 5, lca(root, 4, 5)->data);
+    do_mirror(root);
+    printf("\nAfter taking mirror, INORDER TRAVERSAL: ");
+    inorder(root);
 }
