@@ -248,7 +248,7 @@ void reverseUsingRecursion(SingleLLNode *temp)
     temp->next = NULL;
 }
 
-void recursiveTraverse(SingleLLNode *temp)
+void recursiveReverseTraverse(SingleLLNode *temp)
 {
     if(temp == NULL)
     {
